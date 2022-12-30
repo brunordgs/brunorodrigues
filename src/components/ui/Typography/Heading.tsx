@@ -1,26 +1,13 @@
+import { FONT_SIZES, FONT_WEIGHTS, neuzeitGrotesk } from '@/shared/constants';
+import type { Typography } from '@/shared/interfaces/Typography';
 import clsx from 'clsx';
 import { HTMLAttributes } from 'react';
-import { FONT_WEIGHTS, neuzeitGrotesk } from '@/shared/constants';
-import type { Typography } from '@/shared/interfaces/Typography';
 
 type Props = {
 	as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-	size?: keyof typeof sizes;
+	size?: keyof typeof FONT_SIZES;
 } & HTMLAttributes<HTMLHeadingElement> &
 	Typography;
-
-const sizes = {
-	inherit: '',
-	base: 'text-base',
-	sm: 'text-lg',
-	md: 'text-xl',
-	lg: 'text-2xl',
-	xl: 'text-3xl',
-	'2xl': 'text-4xl',
-	'3xl': 'text-5xl',
-	'4xl': 'text-6xl',
-	'5xl': 'text-7xl',
-};
 
 export default function Heading({
 	as: Tag = 'h1',
@@ -35,7 +22,7 @@ export default function Heading({
 		<Tag
 			className={clsx(
 				!className?.includes('font-sans') && neuzeitGrotesk.className,
-				sizes[size],
+				FONT_SIZES[size],
 				FONT_WEIGHTS[weight],
 				transform,
 				className,
