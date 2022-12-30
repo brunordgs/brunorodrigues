@@ -7,3 +7,16 @@
 		@apply antialiased bg-black text-zinc-50;
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color-scheme: dark;
+	}
+}
+
+
+@media (prefers-color-scheme: light) {
+	html {
+		color-scheme: dark;
+	}
+}
