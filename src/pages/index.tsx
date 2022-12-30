@@ -65,7 +65,7 @@ export default function Home() {
 
 				<section className="space-y-12 py-12 lg:py-32">
 					<div>
-						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200">
+						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200 font-bold">
 							Projects
 						</h2>
 
@@ -96,7 +96,7 @@ export default function Home() {
 					</div>
 
 					<div>
-						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200">Work</h2>
+						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200 font-bold">Work</h2>
 
 						<div className="space-y-4 group">
 							{workProjects.map(({ id, url, category, title, description }) => (
