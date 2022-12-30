@@ -1,9 +1,3 @@
-import localFont from '@next/font/local';
-
-export const neuzeitGrotesk = localFont({
-	src: '../../public/static/font/NeuzeitGrotesk-Bold.woff2',
-});
-
 export const FONT_WEIGHTS = {
 	inherit: '',
 	light: 'font-light',

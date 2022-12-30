@@ -4,6 +4,13 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import localFont from '@next/font/local';
+import clsx from 'clsx';
+
+export const neuzeitGrotesk = localFont({
+	src: '../../public/static/font/NeuzeitGrotesk-Bold.woff2',
+});
+
 export default function Home() {
 	return (
 		<>
@@ -23,7 +30,12 @@ export default function Home() {
 									className="grayscale rounded-md"
 									alt="Bruno Rodrigues"
 								/>
-								<h1 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 text-4xl sm:text-5xl font-bold">
+								<h1
+									className={clsx(
+										'text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 text-4xl sm:text-5xl font-bold',
+										neuzeitGrotesk.className,
+									)}
+								>
 									Bruno
 									<br />
 									Rodrigues
@@ -65,7 +77,12 @@ export default function Home() {
 
 				<section className="space-y-12 py-12 lg:py-32">
 					<div>
-						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200 font-bold">
+						<h2
+							className={clsx(
+								'text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200 font-bold',
+								neuzeitGrotesk.className,
+							)}
+						>
 							Projects
 						</h2>
 
@@ -81,7 +98,9 @@ export default function Home() {
 										<small className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
 											{category}
 										</small>
-										<h3 className="text-2xl font-bold leading-5">{title}</h3>
+										<h3 className={clsx('text-2xl font-bold leading-5', neuzeitGrotesk.className)}>
+											{title}
+										</h3>
 										<p className="text-sm text-zinc-200 font-medium">{description}</p>
 
 										{inProgress && (
@@ -96,7 +115,14 @@ export default function Home() {
 					</div>
 
 					<div>
-						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200 font-bold">Work</h2>
+						<h2
+							className={clsx(
+								'text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200 font-bold',
+								neuzeitGrotesk.className,
+							)}
+						>
+							Work
+						</h2>
 
 						<div className="space-y-4 group">
 							{workProjects.map(({ id, url, category, title, description }) => (
@@ -110,7 +136,9 @@ export default function Home() {
 									<small className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
 										{category}
 									</small>
-									<h3 className="text-2xl font-bold leading-5">{title}</h3>
+									<h3 className={clsx('text-2xl font-bold leading-5', neuzeitGrotesk.className)}>
+										{title}
+									</h3>
 									<p className="text-sm text-zinc-200 font-medium">{description}</p>
 								</Link>
 							))}
