@@ -18,6 +18,14 @@ export const projects = [
 	{
 		id: Math.random(),
 		category: 'Personal',
+		url: 'https://leadchain.netlify.app',
+		title: 'Leadchain',
+		description: 'Decentralized exchange on Cardano to trade and check crypto news.',
+		inProgress: true,
+	},
+	{
+		id: Math.random(),
+		category: 'Personal',
 		url: 'https://omfood.vercel.app',
 		title: 'OMFood',
 		description:
