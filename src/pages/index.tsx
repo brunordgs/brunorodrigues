@@ -1,10 +1,8 @@
 import { Container } from '@/components/ui/Container';
-import Heading from '@/components/ui/Typography/Heading';
-import Link from 'next/link';
 import { projects, workProjects } from '@/data';
-import { Text } from '@/components/ui/Typography/Text';
-import Image from 'next/image';
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
 	return (
@@ -25,27 +23,19 @@ export default function Home() {
 									className="grayscale rounded-md"
 									alt="Bruno Rodrigues"
 								/>
-								<Heading
-									size="4xl"
-									weight="bold"
-									className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 sm:text-5xl"
-								>
+								<h1 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 text-4xl sm:text-5xl font-bold">
 									Bruno
 									<br />
 									Rodrigues
-								</Heading>
+								</h1>
 							</div>
-							<Text className="text-zinc-300">
-								<Text as="strong" className="text-zinc-50">
-									Software Engineer
-								</Text>
+							<p className="text-zinc-300">
+								<strong className="text-zinc-50">Software Engineer</strong>
 								<br />
 								I&apos;m a Software Engineer and a lover of new technologies.
-							</Text>
+							</p>
 
-							<Text as="small" weight="bold" className="block">
-								By the way, I&apos;m looking for a job.
-							</Text>
+							<small className="block">By the way, I&apos;m looking for a job.</small>
 						</div>
 
 						<ul className="flex gap-8 mt-8">
@@ -75,14 +65,9 @@ export default function Home() {
 
 				<section className="space-y-12 py-12 lg:py-32">
 					<div>
-						<Heading
-							as="h2"
-							transform="uppercase"
-							size="xs"
-							className="tracking-widest font-sans mb-2 text-zinc-200"
-						>
+						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200">
 							Projects
-						</Heading>
+						</h2>
 
 						<div className="space-y-4 group">
 							{projects.map(({ id, url, category, title, description, inProgress }) => (
@@ -93,26 +78,15 @@ export default function Home() {
 										target="_blank"
 										rel="noopener noreferrer"
 									>
-										<Text
-											as="small"
-											transform="uppercase"
-											weight="bold"
-											className="tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400"
-										>
+										<small className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
 											{category}
-										</Text>
-										<Heading as="h3" size="2xl" weight="semibold" className="leading-5">
-											{title}
-										</Heading>
-										<Text size="sm" className="text-zinc-200">
-											{description}
-										</Text>
+										</small>
+										<h3 className="text-2xl font-bold leading-5">{title}</h3>
+										<p className="text-sm text-zinc-200 font-medium">{description}</p>
 
 										{inProgress && (
 											<div className="absolute top-2 right-4 bg-purple-400/80 rounded px-2">
-												<Text as="span" size="xs" weight="bold">
-													Work in progress
-												</Text>
+												<span className="text-xs font-bold">Work in progress</span>
 											</div>
 										)}
 									</Link>
@@ -122,14 +96,7 @@ export default function Home() {
 					</div>
 
 					<div>
-						<Heading
-							as="h2"
-							transform="uppercase"
-							size="xs"
-							className="tracking-widest font-sans mb-2 text-zinc-200"
-						>
-							Work
-						</Heading>
+						<h2 className="text-xs uppercase tracking-widest font-sans mb-2 text-zinc-200">Work</h2>
 
 						<div className="space-y-4 group">
 							{workProjects.map(({ id, url, category, title, description }) => (
@@ -140,20 +107,11 @@ export default function Home() {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<Text
-										as="small"
-										transform="uppercase"
-										weight="bold"
-										className="tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400"
-									>
+									<small className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
 										{category}
-									</Text>
-									<Heading as="h3" size="2xl" weight="semibold" className="leading-5">
-										{title}
-									</Heading>
-									<Text size="sm" className="text-zinc-200">
-										{description}
-									</Text>
+									</small>
+									<h3 className="text-2xl font-bold leading-5">{title}</h3>
+									<p className="text-sm text-zinc-200 font-medium">{description}</p>
 								</Link>
 							))}
 						</div>
