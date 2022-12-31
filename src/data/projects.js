@@ -10,7 +10,7 @@ export const projects = [
 	{
 		id: Math.random(),
 		category: 'Personal',
-		url: 'https://sharep.vercel.app',
+		url: 'https://one-movies.netlify.app',
 		title: 'One Movies',
 		description: 'One Movies shows the best movies and TV shows that you must watch.',
 		inProgress: false,
