@@ -27,7 +27,7 @@ export default function Home() {
 									src="https://github.com/brunordgs.png"
 									width={128}
 									height={128}
-									className="grayscale rounded-md"
+									className="rounded-md"
 									alt="Bruno Rodrigues"
 								/>
 								<h1
