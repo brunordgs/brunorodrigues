@@ -35,7 +35,7 @@ export const projects = [
 	{
 		id: Math.random(),
 		category: 'Voluntary',
-		url: 'https://comunidademaranata.com.br',
+		url: 'https://maranata.vercel.app',
 		title: 'Comunidade Evangélica Maranata',
 		description: 'Under construction.',
 		inProgress: true,
