@@ -1,17 +1,24 @@
 import { Container } from '@/components/ui/Container';
-import { projects, workProjects } from '@/data';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { supabase } from '@/services/supabase';
+import { Project } from '@/shared/interfaces/Project';
 import localFont from '@next/font/local';
 import clsx from 'clsx';
+import { GetServerSideProps } from 'next';
 
 export const neuzeitGrotesk = localFont({
 	src: '../../public/static/font/NeuzeitGrotesk-Bold.woff2',
 });
 
-export default function Home() {
+interface Props {
+	projects: Project[];
+	workProjects: Project[];
+}
+
+export default function Home({ projects, workProjects }: Props) {
 	return (
 		<>
 			<Head>
@@ -149,3 +156,20 @@ export default function Home() {
 		</>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+	const res = await supabase.from('projects').select();
+
+	const projects = res.data
+		?.sort((a, b) => a.inProgress - b.inProgress)
+		.filter(({ category }) => category.toLowerCase() !== 'company');
+
+	const workProjects = res.data?.filter(({ category }) => category.toLowerCase() === 'company');
+
+	return {
+		props: {
+			projects,
+			workProjects,
+		},
+	};
+};
