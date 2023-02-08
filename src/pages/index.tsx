@@ -1,13 +1,12 @@
 import { Container } from '@/components/ui/Container';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-
 import { supabase } from '@/services/supabase';
 import { Project } from '@/shared/interfaces/Project';
 import localFont from '@next/font/local';
 import clsx from 'clsx';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const neuzeitGrotesk = localFont({
 	src: '../../public/static/font/NeuzeitGrotesk-Bold.woff2',
@@ -53,8 +52,6 @@ export default function Home({ projects, workProjects }: Props) {
 								<br />
 								I&apos;m a Software Engineer and a lover of new technologies.
 							</p>
-
-							<small className="block">By the way, I&apos;m looking for a job.</small>
 						</div>
 
 						<ul className="flex gap-8 mt-8">
