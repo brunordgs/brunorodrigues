@@ -31,6 +31,7 @@ const biotif = localFont({
 		},
 	],
 	variable: '--font-biotif',
+	display: 'swap',
 });
 
 export default function App({ Component, pageProps }: AppProps) {
