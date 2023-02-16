@@ -1,5 +1,6 @@
 import { Container } from '@/components/ui/Container';
 import { supabase } from '@/services/supabase';
+import { Company } from '@/shared/interfaces/Company';
 import { Project } from '@/shared/interfaces/Project';
 import localFont from '@next/font/local';
 import clsx from 'clsx';
@@ -14,10 +15,10 @@ export const neuzeitGrotesk = localFont({
 
 interface Props {
 	projects: Project[];
-	workProjects: Project[];
+	companies: Company[];
 }
 
-export default function Home({ projects, workProjects }: Props) {
+export default function Home({ projects, companies }: Props) {
 	return (
 		<>
 			<Head>
@@ -129,22 +130,29 @@ export default function Home({ projects, workProjects }: Props) {
 						</h2>
 
 						<div className="space-y-4 group">
-							{workProjects.map(({ id, url, category, title, description }) => (
-								<Link
-									key={id}
-									href={url}
-									className="block bg-zinc-900 p-10 rounded-md space-y-2 hover:scale-105 transition duration-200 ease-in-out group-hover:opacity-50 hover:!opacity-100"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<small className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
-										{category}
-									</small>
-									<h3 className={clsx('text-2xl font-bold leading-5', neuzeitGrotesk.className)}>
-										{title}
-									</h3>
-									<p className="text-sm text-zinc-200 font-medium">{description}</p>
-								</Link>
+							{companies.map(({ id, url, category, title, description, currentJob }) => (
+								<div key={id} className="relative">
+									<Link
+										href={url}
+										className="block bg-zinc-900 p-10 rounded-md space-y-2 hover:scale-105 transition duration-200 ease-in-out group-hover:opacity-50 hover:!opacity-100"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<small className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
+											{category}
+										</small>
+										<h3 className={clsx('text-2xl font-bold leading-5', neuzeitGrotesk.className)}>
+											{title}
+										</h3>
+										<p className="text-sm text-zinc-200 font-medium">{description}</p>
+
+										{currentJob && (
+											<div className="absolute top-2 right-4 bg-purple-400/80 rounded px-2">
+												<span className="text-xs font-bold">Current Job</span>
+											</div>
+										)}
+									</Link>
+								</div>
 							))}
 						</div>
 					</div>
@@ -155,18 +163,26 @@ export default function Home({ projects, workProjects }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-	const res = await supabase.from('projects').select();
+	try {
+		const [allProjects, allCompanies] = await Promise.all([
+			supabase.from('projects').select(),
+			supabase.from('companies').select(),
+		]);
 
-	const projects = res.data
-		?.sort((a, b) => a.inProgress - b.inProgress)
-		.filter(({ category }) => category.toLowerCase() !== 'company');
+		const projects = allProjects.data?.sort((a, b) => a.inProgress - b.inProgress);
+		const companies = allCompanies.data?.sort(
+			(a, b) => Number(new Date(b.created_at)) - Number(new Date(a.created_at)),
+		);
 
-	const workProjects = res.data?.filter(({ category }) => category.toLowerCase() === 'company');
-
-	return {
-		props: {
-			projects,
-			workProjects,
-		},
-	};
+		return {
+			props: {
+				projects,
+				companies,
+			},
+		};
+	} catch {
+		return {
+			notFound: true,
+		};
+	}
 };
